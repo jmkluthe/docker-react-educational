@@ -1,0 +1,16 @@
+FROM node:alpine
+
+WORKDIR /usr/app
+
+COPY package.json .
+
+RUN npm install
+
+COPY . .
+
+#apparently this works without this shit now abortive upgrade successful?
+#RUN chown -R node /usr/app/node_modules
+
+#USER node
+
+CMD ["npm", "run", "start"]
