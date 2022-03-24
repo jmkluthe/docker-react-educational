@@ -4,4 +4,16 @@ services:
 before_install:
   - docker build -t kluthe/docker-react-educational -f Dockerfile.dev .
 script:
-  - docker run kluthe/docker-react-educational npm run test -- --coverage  
+  - docker run kluthe/docker-react-educational npm run test -- --coverage
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-react-educational"
+  env: "Dockerreacteducational-env"
+  bucket_name: "elasticbeanstalk-us-east-1-517393562642"
+  bucket_path: "docker-react-educational"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
