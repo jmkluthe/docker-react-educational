@@ -20,4 +20,6 @@ RUN npm run build
 #deploy
 FROM nginx
 
+EXPOSE 80
+
 COPY --from=build /usr/app/build /usr/share/nginx/html
